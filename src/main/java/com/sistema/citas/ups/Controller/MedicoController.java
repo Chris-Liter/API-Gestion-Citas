@@ -40,5 +40,60 @@ public class MedicoController implements IMedicoController{
         }
         return row;
     }
+
+    @Override
+    public int crearMedico(Medico medico) {
+        int row =0;
+        try {
+            row = rep.crearMedico(medico);
+        } catch (Exception e) {
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int crearPaciente(Paciente paciente) {
+        int row = 0;
+        try {
+            row = rep.crearPaciente(paciente);
+        } catch (Exception e) {
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int crearRecordatorio(Recordatorio recordatorio) {
+        int row = 0;
+        try {
+            row = rep.crearRecordatorio(recordatorio);
+        } catch (Exception e) {
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int programarCita(Cita cita) {
+        int row = 0;
+        try {
+            row = rep.crearCita(cita);
+        } catch (Exception e) {
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int cancelarCita(int id, Cita cita) {
+        int row = 0;
+        try {
+            row = rep.cancelarCita(id, cita);
+        } catch (Exception e) {
+            throw e;
+        }
+        return row;
+    }
     
 }

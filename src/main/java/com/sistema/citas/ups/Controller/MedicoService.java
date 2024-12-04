@@ -52,6 +52,56 @@ public class MedicoService {
         } 
         return new ResponseEntity<>(serv, HttpStatus.OK);
     }
+
+    @PostMapping("/crearmedico")
+    public ResponseEntity<ServiceResponse> crearMedico(@RequestBody Medico entity) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.crearMedico(entity);
+        if(result == 1){
+            serv.setMessage("Item creado");
+        } 
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+    
+    @PostMapping("/crearcita")
+    public ResponseEntity<ServiceResponse> crearCita(@RequestBody Cita entity) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.programarCita(entity);
+        if(result == 1){
+            serv.setMessage("Item creado");
+        } 
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+
+    @PostMapping("/crearpaciente")
+    public ResponseEntity<ServiceResponse> crearPaciente(@RequestBody Paciente entity) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.crearPaciente(entity);
+        if(result == 1){
+            serv.setMessage("Item creado");
+        } 
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+
+    @PostMapping("/crearrecordatorio")
+    public ResponseEntity<ServiceResponse> crearRecordatorio(@RequestBody Recordatorio entity) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.crearRecordatorio(entity);
+        if(result == 1){
+            serv.setMessage("Item creado");
+        } 
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+
+    @PutMapping("cancelarCita/{id}")
+    public ResponseEntity<ServiceResponse> cancelarCita(@PathVariable int id, @RequestBody Cita cita) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.cancelarCita(id, cita);
+        if(result == 1){
+            serv.setMessage("Item cancelado");
+        } 
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
     
     
 }
