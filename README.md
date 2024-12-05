@@ -32,6 +32,31 @@ Este proyecto es una API para la gestión de un sistema médico. Proporciona fun
     ```
 2. La API estará disponible en `http://localhost:8080`.
 
+## 🐳 Docker Compose
+
+Este proyecto utiliza Docker Compose para facilitar la ejecución de la API y sus servicios asociados.
+
+### 🛠️ Herramientas utilizadas
+
+1. **API**: Contenedor con Spring Boot expuesto en el puerto `8080`.
+2. **Base de Datos**: Contenedor con PostgreSQL para almacenar los datos.
+3. **pgAdmin**: Herramienta gráfica para gestionar PostgreSQL.
+
+### ▶️ Ejecución con Docker Compose
+
+1. Asegúrate de tener Docker y Docker Compose instalados.
+2. Ejecuta el siguiente comando desde la raíz del proyecto:
+   ```bash
+   docker-compose up --build
+## 🌐 Acceso a los Servicios
+
+Los servicios estarán disponibles en:
+
+- **API**: [http://localhost:8080](http://localhost:8080)
+- **pgAdmin**: [http://localhost:5050](http://localhost:5050)  
+  - **Usuario**: `admin@admin.com`  
+  - **Contraseña**: `admin`
+
 ## 📚 Endpoints
 
 - `GET /pacientes`: Obtiene la lista de pacientes.
