@@ -5,6 +5,8 @@
 package com.sistema.citas.ups.Controller;
 
 import com.sistema.citas.ups.Model.Cita;
+import com.sistema.citas.ups.Model.Medico;
+import com.sistema.citas.ups.Model.Paciente;
 import com.sistema.citas.ups.Model.Recordatorio;
 import com.sistema.citas.ups.Repository.IMedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

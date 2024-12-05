@@ -1,6 +1,8 @@
 package com.sistema.citas.ups.Repository;
 
 import com.sistema.citas.ups.Model.Cita;
+import com.sistema.citas.ups.Model.Medico;
+import com.sistema.citas.ups.Model.Paciente;
 import com.sistema.citas.ups.Model.Recordatorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
