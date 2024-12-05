@@ -39,6 +39,49 @@ public class UsuarioService {
         return new ResponseEntity<>(serv, HttpStatus.OK);
 
     }
+
+    @PostMapping("save")
+    public ResponseEntity<ServiceResponse> save (@RequestBody Usuario usuario) {
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.crearUsuario(usuario);
+        if(result == 1){
+            serv.setMessage("Item agregado");
+        }
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<ServiceResponse> delete(@PathVariable int id){
+        ServiceResponse serv = new ServiceResponse();
+        int result = controller.deleteUsuario(id);
+        if(result == 1){
+            serv.setMessage("Item eliminado");
+        }
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
+
+    @PostMapping("generarReporte")
+    public ResponseEntity<ServiceResponse> generarReporte(@RequestBody PacienteConsulta variable) {
+        ServiceResponse serv = new ServiceResponse();
+        Consulta consulta = new Consulta();        
+        consulta.setDetalles(variable.getDetalles());
+        consulta.setFecha(variable.getFecha());
+        consulta.setMedico_id(variable.getMedico_id());
+        consulta.setPaciente_id(variable.getPaciente_id());
+        consulta.setSignosVitales(variable.getSignosVitales());
+
+
+        Paciente paciente = new Paciente();
+        paciente.setId(variable.getPaciente_id());
+        paciente.setDiagnostico(variable.getDiagnostico());
+        System.out.println(variable.getPaciente_id());
+        System.out.println("entra en la generacion del reporte");
+        int result = controller.generarReporte(consulta, paciente);
+        if(result == 1){
+            serv.setMessage("Item generado");
+        }
+        return new ResponseEntity<>(serv, HttpStatus.OK);
+    }
     
 
     
