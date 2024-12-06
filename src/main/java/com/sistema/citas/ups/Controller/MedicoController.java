@@ -4,11 +4,14 @@
  */
 package com.sistema.citas.ups.Controller;
 
+import com.sistema.citas.ups.Model.CertificadoMedico;
 import com.sistema.citas.ups.Model.Cita;
+import com.sistema.citas.ups.Model.Consulta;
 import com.sistema.citas.ups.Model.Medico;
 import com.sistema.citas.ups.Model.Paciente;
 import com.sistema.citas.ups.Model.Recordatorio;
 import com.sistema.citas.ups.Repository.IMedicoRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -96,6 +99,38 @@ public class MedicoController implements IMedicoController{
             throw e;
         }
         return row;
+    }
+
+    @Override
+    public List<Cita> verAgenda(int id) {
+        List<Cita> listado = null;
+        try {
+            
+            listado = rep.verAgenda(id);
+        } catch (Exception e) {
+            throw e;
+        }
+        return listado;
+    }
+
+    @Override
+    public void registrarConsulta(Paciente paciente, Consulta consulta) {
+        try {
+            rep.registrarConsulta(paciente, consulta);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public List<CertificadoMedico> emitirCertificados(int paciente) {
+        List<CertificadoMedico> certificado = null;
+        try {
+            certificado = rep.emitirCertificados(paciente);
+        } catch (Exception e) {
+            throw e;
+        }
+        return certificado;
     }
     
 }

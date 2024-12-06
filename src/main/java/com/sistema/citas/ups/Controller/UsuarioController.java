@@ -1,5 +1,7 @@
 package com.sistema.citas.ups.Controller;
 
+import com.sistema.citas.ups.Model.Consulta;
+import com.sistema.citas.ups.Model.Paciente;
 import com.sistema.citas.ups.Model.Usuario;
 import com.sistema.citas.ups.Repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,39 @@ public class UsuarioController implements IUsuarioController{
         int row;
         try{
             row = rep.update(usuario);
+        }catch(Exception e){
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int crearUsuario(Usuario usuario) {
+        int row = 0;
+        try{
+            row = rep.crearUsuario(usuario);
+        }catch(Exception e){
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int generarReporte(Consulta consulta, Paciente paciente) {
+        int row;
+        try{
+            row = rep.generarReporte(consulta, paciente);
+        }catch(Exception e){
+            throw e;
+        }
+        return row;
+    }
+
+    @Override
+    public int deleteUsuario(int id) {
+        int row;
+        try{
+            row = rep.delete(id);
         }catch(Exception e){
             throw e;
         }

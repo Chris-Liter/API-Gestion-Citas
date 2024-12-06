@@ -1,6 +1,8 @@
 package com.sistema.citas.ups;
 
+import com.sistema.citas.ups.Model.Usuario;
 import com.sistema.citas.ups.Repository.UsuarioRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,7 @@ public class UpsApplication {
 	}
         
         
-        @PostConstruct
+    @PostConstruct
     public void init() {
         // Crear un nuevo usuario
         Usuario usuario = new Usuario();
@@ -71,13 +73,6 @@ public class UpsApplication {
         usuarioRepository.crearUsuario(usuario3);
         usuarioRepository.crearUsuario(usuario4);
         usuarioRepository.crearUsuario(usuario5);
-
-
-
-
-
-
-
 
 
         System.out.println("Usuario inicial insertado en la base de datos");
