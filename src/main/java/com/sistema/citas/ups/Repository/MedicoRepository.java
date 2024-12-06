@@ -1,6 +1,8 @@
 package com.sistema.citas.ups.Repository;
 
+import com.sistema.citas.ups.Model.CertificadoMedico;
 import com.sistema.citas.ups.Model.Cita;
+import com.sistema.citas.ups.Model.Consulta;
 import com.sistema.citas.ups.Model.Medico;
 import com.sistema.citas.ups.Model.Paciente;
 import com.sistema.citas.ups.Model.Recordatorio;
@@ -102,6 +104,37 @@ public class MedicoRepository implements IMedicoRepository {
             System.err.println("Error al insertar el medico: " + e.getMessage());
             return 0;
         }
+    }
+
+    @Override
+    public List<Cita> verAgenda(int id) {
+        String sql = "SELECT * FROM certificadomedico where medico_id = ?";
+        return jdbc.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Cita.class));
+    }
+
+    @Override
+    public void registrarConsulta(Paciente paciente, Consulta consulta) {
+        String sql = "INSERT INTO paciente(nombre, apellido, cedula, telefono, direccion, correo, diagnostico) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        String verificarCedula = "SELECT * FROM paciente where cedula = ?";
+        List<Paciente> ced = jdbc.query(verificarCedula, new Object[]{paciente.getCedula()}, new BeanPropertyRowMapper<>(Paciente.class));
+        if(ced.size() <= 0){
+            jdbc.update(sql, paciente.getNombre(), paciente.getApellido(), paciente.getCedula(), paciente.getTelefono(), paciente.getDireccion(), paciente.getCorreo(), paciente.getDiagnostico());
+        }
+        
+        String consultaP = "SELECT * FROM paciente where cedula = ?";
+        List<Paciente> pacientes = jdbc.query(consultaP, new Object[]{paciente.getCedula()}, new BeanPropertyRowMapper<>(Paciente.class));
+
+        for(Paciente pa: pacientes){
+            String sql2 = "INSERT INTO consulta(fecha, detalles, signosvitales, paciente_id, medico_id) VALUES (?, ?, ?, ?, ?)";
+            jdbc.update(sql2, consulta.getFecha(), consulta.getDetalles(), consulta.getSignosVitales(), pa.getId(), consulta.getMedico_id());
+        }
+    }
+
+    @Override
+    public List<CertificadoMedico> emitirCertificados(int paciente) {
+        String sql = "SELECT * FROM certificadomedico where paciente_id = ?";
+        return jdbc.query(sql, new Object[]{paciente}, new BeanPropertyRowMapper<>(CertificadoMedico.class));
     }
     
 }

@@ -1,9 +1,13 @@
 package com.sistema.citas.ups.Repository;
 
 import com.sistema.citas.ups.Model.*;
+import java.util.List;
 
 public interface IMedicoRepository {
     
+    List<Cita> verAgenda(int id);
+    void registrarConsulta(Paciente paciente, Consulta consulta);
+    List<CertificadoMedico> emitirCertificados(int paciente);
     
     int confirmarCita(int id, Cita cita);
     int enviarRecordatorio(Recordatorio recordatorio);
