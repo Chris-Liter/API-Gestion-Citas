@@ -1,5 +1,8 @@
 package com.sistema.citas.ups.Controller;
 
+import com.sistema.citas.ups.Model.Consulta;
+import com.sistema.citas.ups.Model.Paciente;
+import com.sistema.citas.ups.Model.PacienteConsulta;
 import java.util.List;
 
 import com.sistema.citas.ups.Model.ServiceResponse;
